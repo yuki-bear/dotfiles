@@ -22,6 +22,13 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'airblade/vim-gitgutter'
 
+NeoBundle 'scrooloose/nerdtree'      " File drawer
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+
+NeoBundle 'scrooloose/nerdcommenter' " Mass commenting
+NeoBundle 'msanders/snipmate.vim'    " Code snippets with tab completion
+NeoBundle 'kien/ctrlp.vim'           " Fuzzy file finder
+
 call neobundle#end()
 
 " Required:
