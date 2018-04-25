@@ -41,7 +41,6 @@ set showcmd
 
 set number
 set cursorline
-set virtualedit=onemore
 set smartindent
 set visualbell
 set showmatch
@@ -55,3 +54,11 @@ set smartcase
 set incsearch
 set wrapscan
 set hlsearch
+set backspace=indent,eol,start
+
+set list
+set listchars=tab:>-,trail:.,precedes:<,extends:>
+
+syntax enable
+"let &t_Co=256
+colorscheme molokai
