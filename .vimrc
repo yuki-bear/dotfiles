@@ -21,13 +21,21 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'airblade/vim-gitgutter'
+" Not to occur errors with gitgutter on windows
+if has("windows")
+  set shell=/bin/bash
+endif
 
 NeoBundle 'scrooloose/nerdtree'      " File drawer
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
+nnoremap <silent><C-E> :NERDTreeToggle<CR>
 
 NeoBundle 'scrooloose/nerdcommenter' " Mass commenting
 NeoBundle 'msanders/snipmate.vim'    " Code snippets with tab completion
 NeoBundle 'kien/ctrlp.vim'           " Fuzzy file finder
+let g:ctrlp_show_hidden=1
+
+NeoBundle 'majutsushi/tagbar'
+nmap <F8> :TagbarToggle<CR>
 
 call neobundle#end()
 
@@ -38,34 +46,50 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 
-set fenc=utf-8
-set ff=unix
-set nobackup
-set noswapfile
-set autoread
-set hidden
-set showcmd
 
-set number
-set cursorline
-set smartindent
-set visualbell
-set showmatch
-set laststatus=2
-set wildmode=list:longest
-nnoremap j gj
-nnoremap k gk
+" system setting
+set encoding=utf-8          " internal encoding
+set fenc=utf-8              " default charset
+set ff=unix                 " default line endings
+set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8 " encoding detection order for Japanese
+set nobackup                " not make backup files
+"set noswapfile              " not make swap files
+set autoread                " reload editing file automatically when changes
+set hidden                  " default line endings
+set showcmd                 " show command in bottom bar
+set visualbell              " disable beeping
 
+" search setting
 set ignorecase
 set smartcase
-set incsearch
+set incsearch               " search as characters are entered
+set hlsearch                " highlight matches
 set wrapscan
-set hlsearch
-set backspace=indent,eol,start
 
-set list
-set listchars=tab:>-,trail:.,precedes:<,extends:>
-
+" visual setting
 syntax enable
-"let &t_Co=256
-colorscheme molokai
+set tabstop=4               " number of visual spaces per TAB
+set softtabstop=4           " number of spaces in tab when editing
+set number                  " show line numbers
+set title                   " show filename in title bar
+set cursorline              " highlight current line
+set showmatch               " highlight matching [{()}]
+set laststatus=2            " show status line
+set ruler                   " show cursor position
+set list                    " show listchars
+set listchars=tab:>-,space:·,trail:.,precedes:<,extends:> " appearance of system keys such as TAB
+
+" customize statusline
+set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
+
+set smartindent             " indent smartly
+set wildmenu                " visual autocomplete for command menu
+set wildmode=list:longest   " set filename correction better
+set backspace=indent,eol,start " set backspace behaviour natural
+
+let mapleader=","           " set leader comma
+
+" key mapping
+nnoremap j gj
+nnoremap k gk
+nnoremap gV `[v`]           " highlight la
