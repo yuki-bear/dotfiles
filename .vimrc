@@ -22,9 +22,12 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'airblade/vim-gitgutter'
 " Not to occur errors with gitgutter on windows
-if has("windows")
+if has("win32unix")
   set shell=/bin/bash
 endif
+set updatetime=100
+nnoremap <silent><C-G> :GitGutterLineHighlightsToggle<CR>
+
 
 NeoBundle 'scrooloose/nerdtree'      " File drawer
 nnoremap <silent><C-E> :NERDTreeToggle<CR>
@@ -36,8 +39,6 @@ let g:ctrlp_show_hidden=1
 
 NeoBundle 'majutsushi/tagbar'
 nmap <F8> :TagbarToggle<CR>
-
-NeoBundle 'w0rp/ale'
 
 call neobundle#end()
 
@@ -79,7 +80,7 @@ set showmatch               " highlight matching [{()}]
 set laststatus=2            " show status line
 set ruler                   " show cursor position
 set list                    " show listchars
-set listchars=tab:>-,trail:.,precedes:<,extends:> " appearance of system keys such as TAB space:·,
+set listchars=tab:>-,trail:.,precedes:<,extends:> " appearance of system keys such as TAB
 
 " customize statusline
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
