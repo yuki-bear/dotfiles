@@ -37,6 +37,8 @@ let g:ctrlp_show_hidden=1
 NeoBundle 'majutsushi/tagbar'
 nmap <F8> :TagbarToggle<CR>
 
+NeoBundle 'w0rp/ale'
+
 call neobundle#end()
 
 " Required:
@@ -77,7 +79,7 @@ set showmatch               " highlight matching [{()}]
 set laststatus=2            " show status line
 set ruler                   " show cursor position
 set list                    " show listchars
-set listchars=tab:>-,space:·,trail:.,precedes:<,extends:> " appearance of system keys such as TAB
+set listchars=tab:>-,trail:.,precedes:<,extends:> " appearance of system keys such as TAB space:·,
 
 " customize statusline
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
@@ -92,4 +94,14 @@ let mapleader=","           " set leader comma
 " key mapping
 nnoremap j gj
 nnoremap k gk
-nnoremap gV `[v`]           " highlight la
+nnoremap gV `[v`]           " highlight last inserted text
+inoremap jk <esc>           " jk is escape
+
+" colorscheme
+let &t_Co=256
+try
+  colorscheme molokai        " git@github.com:tomasr/molokai.git
+  "colorscheme badwolf        " git@github.com:sjl/badwolf.git
+catch /^Vim\%((\a\+)\)\=:E185/
+endtry
+
