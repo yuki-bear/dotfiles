@@ -1,0 +1,96 @@
+{
+	"env": {
+		"browser": true
+	},
+	"extends": "eslint:recommended",
+	"rules": {
+		"indent": [
+			"error",
+			"tab"
+		],
+		"linebreak-style": [
+			"error",
+			"unix"
+		],
+		"quotes": [
+			"error",
+			"single"
+		],
+		"array-bracket-spacing": [
+			"error",
+			"never"
+		],
+		"block-spacing": [
+			"error",
+			"always"
+		],
+		"brace-style": [
+			"error",
+			"1tbs"
+		],
+		"semi": [
+			"error",
+			"always"
+		],
+		"curly": [
+			"error",
+			"all"
+		],
+		"semi-spacing": [
+			"error",
+			{
+				"before": false,
+				"after": true
+			}
+		],
+		"comma-spacing": [
+			"error",
+			{
+				"before": false,
+				"after": true
+			}
+		],
+		"comma-style": [
+			"error",
+			"last"
+		],
+		"computed-property-spacing": [
+			"error",
+			"never"
+		],
+		"consistent-this": [
+			"error",
+			"that"
+		],
+		"func-call-spacing": [
+			"error",
+			"never"
+		],
+		"semi-style": [
+			"error",
+			"last"
+		],
+		"space-before-blocks": [
+			"error",
+			"always"
+		],
+		"space-before-function-paren": [
+			"error",
+			{
+				"anonymous": "always",
+				"named": "always",
+				"asyncArrow": "always"
+			}
+		],
+		"space-in-parens": [
+			"error",
+			"never"
+		],
+		"space-infix-ops": [
+			"error",
+			{
+				"int32Hint": false
+			}
+		]
+	}
+}
