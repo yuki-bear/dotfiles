@@ -25,7 +25,7 @@ NeoBundle 'airblade/vim-gitgutter'
 if has("win32unix")
   set shell=/bin/bash
 endif
-set updatetime=100
+set updatetime=100 " update term. especially for gitgutter's refresh term
 nnoremap <silent><C-G> :GitGutterLineHighlightsToggle<CR>
 
 
@@ -72,6 +72,7 @@ set wrapscan
 " visual setting
 syntax enable
 set tabstop=4               " number of visual spaces per TAB
+set shiftwidth=4            " indent size
 set softtabstop=4           " number of spaces in tab when editing
 set number                  " show line numbers
 set title                   " show filename in title bar
