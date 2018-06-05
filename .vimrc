@@ -5,71 +5,73 @@ if &compatible
   set nocompatible               " Be iMproved
 endif
 
-" Required:
-set runtimepath+=~/.vim/bundle/neobundle.vim/
+if isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
+  " Required:
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
+  " Required:
+  call neobundle#begin(expand('~/.vim/bundle/'))
 
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+  " Let NeoBundle manage NeoBundle
+  " Required:
+  NeoBundleFetch 'Shougo/neobundle.vim'
 
-" My Bundles here:
-" Refer to |:NeoBundle-examples|.
-" Note: You don't set neobundle setting in .gvimrc!
+  " My Bundles here:
+  " Refer to |:NeoBundle-examples|.
+  " Note: You don't set neobundle setting in .gvimrc!
 
-NeoBundle 'editorconfig/editorconfig-vim'
-NeoBundle 'airblade/vim-gitgutter'
-" Not to occur errors with gitgutter on windows
-set updatetime=100 " update term. especially for gitgutter's refresh term
-if has("win32unix")
-  set shell=/bin/bash
+  NeoBundle 'editorconfig/editorconfig-vim'
+  NeoBundle 'airblade/vim-gitgutter'
+  " Not to occur errors with gitgutter on windows
+  set updatetime=100 " update term. especially for gitgutter's refresh term
+  if has("win32unix")
+    set shell=/bin/bash
+  endif
+  if has('windows')
+    let g:gitgutter_git_executable = 'git' "for gvim on windows
+  endif
+  nnoremap <silent><C-G> :GitGutterLineHighlightsToggle<CR>
+
+
+  NeoBundle 'scrooloose/nerdtree'      " File drawer
+  nnoremap <silent><C-E> :NERDTreeToggle<CR>
+
+  NeoBundle 'scrooloose/nerdcommenter' " Mass commenting
+  let g:NERDSpaceDelims = 1            " Add spaces after comment delimiters by default
+  let g:NERDCompactSexyComs = 1        " Use compact syntax for prettified multi-line comments
+  let g:NERDDefaultAlign = 'left'      " Align line-wise comment delimiters flush left instead of following code indentation
+  let g:NERDAltDelims_java = 0         " Set a language to use its alternate delimiters by default
+  let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } } " Add your own custom formats or override the defaults
+  let g:NERDCommentEmptyLines = 0      " Allow commenting and inverting empty lines (useful when commenting a region)
+  let g:NERDTrimTrailingWhitespace = 0 " Enable trimming of trailing whitespace when uncommenting
+  map <silent><C-N> <plug>NERDCommenterToggle
+
+  NeoBundle 'msanders/snipmate.vim'    " Code snippets with tab completion
+  NeoBundle 'kien/ctrlp.vim'           " Fuzzy file finder
+  let g:ctrlp_show_hidden = 1
+  let g:ctrlp_clear_cache_on_exit = 0
+  if has('windows')
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*     " MacOSX/Linux
+  else
+    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*\\vendor\\*  " Windows
+  endif
+  let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn)$\|\v[\/](vendor)$',
+    \ 'file': '\v\.(exe|so|dll)$',
+    \ 'link': 'some_bad_symbolic_links',
+    \ }
+  NeoBundle 'majutsushi/tagbar'
+  nmap <F8> :TagbarToggle<CR>
+
+  call neobundle#end()
+
+  " Required:
+  filetype plugin indent on
+
+  " If there are uninstalled bundles found on startup,
+  " this will conveniently prompt you to install them.
+  NeoBundleCheck
 endif
-if has('windows')
-  let g:gitgutter_git_executable = 'git' "for gvim on windows
-endif
-nnoremap <silent><C-G> :GitGutterLineHighlightsToggle<CR>
-
-
-NeoBundle 'scrooloose/nerdtree'      " File drawer
-nnoremap <silent><C-E> :NERDTreeToggle<CR>
-
-NeoBundle 'scrooloose/nerdcommenter' " Mass commenting
-let g:NERDSpaceDelims = 1            " Add spaces after comment delimiters by default
-let g:NERDCompactSexyComs = 1        " Use compact syntax for prettified multi-line comments
-let g:NERDDefaultAlign = 'left'      " Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDAltDelims_java = 0         " Set a language to use its alternate delimiters by default
-let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } } " Add your own custom formats or override the defaults
-let g:NERDCommentEmptyLines = 0      " Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDTrimTrailingWhitespace = 0 " Enable trimming of trailing whitespace when uncommenting
-map <silent><C-N> <plug>NERDCommenterToggle
-
-NeoBundle 'msanders/snipmate.vim'    " Code snippets with tab completion
-NeoBundle 'kien/ctrlp.vim'           " Fuzzy file finder
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_clear_cache_on_exit = 0
-if has('windows')
-  set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*     " MacOSX/Linux
-else
-  set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*\\vendor\\*  " Windows
-endif
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$\|\v[\/](vendor)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
-NeoBundle 'majutsushi/tagbar'
-nmap <F8> :TagbarToggle<CR>
-
-call neobundle#end()
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
 
 
 " system setting
@@ -79,9 +81,9 @@ set ff=unix                 " default line endings
 set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8 " encoding detection order for Japanese
 set backup
 set swapfile
-set backupdir=~/.vim/.backup//
-set undodir=~/.vim/.undo//
-set directory=~/.vim/.swp//
+set backupdir=~/.vim/.backup/
+"set undodir=~/.vim/.undo/
+set directory=~/.vim/.swp/
 set autoread                " reload editing file automatically when changes
 set hidden                  " default line endings
 set showcmd                 " show command in bottom bar
