@@ -63,6 +63,10 @@ if isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
   NeoBundle 'majutsushi/tagbar'
   nmap <F8> :TagbarToggle<CR>
 
+  NeoBundle 'leafgarland/typescript-vim'
+  let g:typescript_compiler_binary = 'tsc'
+  let g:typescript_compiler_options = ''
+
   call neobundle#end()
 
   " Required:
