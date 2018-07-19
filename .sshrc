@@ -8,5 +8,5 @@ tmux() {
     fi
     rm -rf $TMUXDIR/.sshrc.d
     cp -r $SSHHOME/.sshrc $SSHHOME/bashsshrc $SSHHOME/sshrc $SSHHOME/.sshrc.d $TMUXDIR
-    SSHHOME=$TMUXDIR SHELL=$TMUXDIR/bashsshrc `which tmux` -f $SSHHOME/.sshrc.d/.tmux.conf -S $TMUXDIR/tmuxserver $@
+    SSHHOME=$TMUXDIR SHELL=$TMUXDIR/bashsshrc tmux -f $SSHHOME/.sshrc.d/.tmux.conf -S $TMUXDIR/tmuxserver $@
 }
