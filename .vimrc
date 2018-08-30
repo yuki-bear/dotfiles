@@ -92,6 +92,7 @@ set autoread                " reload editing file automatically when changes
 set hidden                  " default line endings
 set showcmd                 " show command in bottom bar
 set visualbell              " disable beeping
+set lazyredraw              " not to draw movings of macros
 
 " search setting
 set ignorecase
