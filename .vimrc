@@ -49,7 +49,11 @@ if isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
   NeoBundle 'msanders/snipmate.vim'    " Code snippets with tab completion
   NeoBundle 'kien/ctrlp.vim'           " Fuzzy file finder
   let g:ctrlp_show_hidden = 1
+  let g:ctrlp_max_height = 20
   let g:ctrlp_clear_cache_on_exit = 0
+  let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+  let g:ctrlp_lazy_update = 1
+  let g:ctrlp_root_markers = ['package.json', 'composer.json']
   if has('windows')
     set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*     " MacOSX/Linux
   else
