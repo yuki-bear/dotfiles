@@ -110,6 +110,7 @@ syntax enable
 set tabstop=4               " number of visual spaces per TAB
 set shiftwidth=4            " indent size
 set softtabstop=4           " number of spaces in tab when editing
+set expandtab               " insert spaces when type tab key
 set number                  " show line numbers
 set title                   " show filename in title bar
 set cursorline              " highlight current line
