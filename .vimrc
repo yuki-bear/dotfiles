@@ -22,6 +22,32 @@ if isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
 
   NeoBundle 'editorconfig/editorconfig-vim'
   NeoBundle 'airblade/vim-gitgutter'
+
+  NeoBundle 'Shougo/neosnippet.vim'
+  NeoBundle 'Shougo/neosnippet-snippets'
+  " Plugin key-mappings.
+  " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+  " SuperTab like snippets behavior.
+  " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+  "imap <expr><TAB>
+  " \ pumvisible() ? "\<C-n>" :
+  " \ neosnippet#expandable_or_jumpable() ?
+  " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+  " For conceal markers.
+  if has('conceal')
+    set conceallevel=2 concealcursor=niv
+  endif
+
+  "set snippet file dir
+  let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
+
   " Not to occur errors with gitgutter on windows
   set updatetime=100 " update term. especially for gitgutter's refresh term
   if has("win32unix")
@@ -46,6 +72,8 @@ if isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
   let g:NERDTrimTrailingWhitespace = 0 " Enable trimming of trailing whitespace when uncommenting
   map <silent><C-N> <plug>NERDCommenterToggle
 
+  NeoBundle 'posva/vim-vue'
+  autocmd FileType vue syntax sync fromstart
   NeoBundle 'msanders/snipmate.vim'    " Code snippets with tab completion
   NeoBundle 'kien/ctrlp.vim'           " Fuzzy file finder
   let g:ctrlp_show_hidden = 1
@@ -53,19 +81,21 @@ if isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
   let g:ctrlp_clear_cache_on_exit = 0
   let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
   let g:ctrlp_lazy_update = 1
-  let g:ctrlp_root_markers = ['package.json', 'composer.json']
+  let g:ctrlp_root_markers = ['package.json', 'composer.json', 'Gemfile']
   if has('windows')
     set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*     " MacOSX/Linux
   else
     set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*\\vendor\\*  " Windows
   endif
   let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn)$\|\v[\/](vendor)$',
-    \ 'file': '\v\.(exe|so|dll)$',
+    \ 'dir':  '\v[\/]\.(git|hg|svn)$|\v[\/](build|storage|templates_c)$',
+    \ 'file': '\v\.(log|exe|so|dll)$',
     \ 'link': 'some_bad_symbolic_links',
     \ }
   NeoBundle 'majutsushi/tagbar'
   nmap <F8> :TagbarToggle<CR>
+  " show tag list if there are two or more candidates
+  nnoremap <C-]> g<C-]> 
 
   NeoBundle 'leafgarland/typescript-vim'
   let g:typescript_compiler_binary = 'tsc'
@@ -86,17 +116,24 @@ endif
 set encoding=utf-8          " internal encoding
 set fenc=utf-8              " default charset
 set ff=unix                 " default line endings
-set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8 " encoding detection order for Japanese
+set fileencodings=utf8,iso-2022-jp,cp932,sjis,euc-jp " encoding detection order for Japanese
 set backup
 set swapfile
-set backupdir=~/.vim/.backup/
-"set undodir=~/.vim/.undo/
-set directory=~/.vim/.swp/
+if isdirectory(expand("~/.vim/.backup/"))
+    set backupdir=~/.vim/.backup/
+endif
+if isdirectory(expand("~/.vim/.undo/"))
+    set undodir=~/.vim/.undo/
+endif
+if isdirectory(expand("~/.vim/.swp/"))
+    set directory=~/.vim/.swp/
+endif
 set autoread                " reload editing file automatically when changes
 set hidden                  " default line endings
 set showcmd                 " show command in bottom bar
 set visualbell              " disable beeping
 set lazyredraw              " not to draw movings of macros
+set clipboard=unnamed
 
 " search setting
 set ignorecase
@@ -133,8 +170,10 @@ let mapleader=","           " set leader comma
 " key mapping
 nnoremap j gj
 nnoremap k gk
-nnoremap gV `[v`]           " highlight last inserted text
-inoremap jk <esc>           " jk is escape
+" highlight last inserted text
+nnoremap gV `[v`]
+" jk is escape
+inoremap <silent> jk <esc>
 
 " colorscheme
 let &t_Co=256
