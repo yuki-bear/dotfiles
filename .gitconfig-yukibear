@@ -1,15 +1,23 @@
 [user]
-	name = yukibear
-	email = yuki.sato.dev@gmail.com
+    name = Yuki Sato
+    email = yuki.sato.dev@gmail.com
 
 [core]
-	excludesfile = ~/.gitignore
-	autocrlf = false
-	preloadindex = true
-	fscache = true
+    excludesfile = ~/.gitignore
+    autocrlf = false
+    preloadindex = true
+    fscache = true
 
 [gc]
-	auto = 256
+    auto = 256
 
 [alias]
-	graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
+    graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
+    br = branch
+    co = checkout
+    st = status
+    ad = add
+    cm = commit
+    pl = pull
+    ps = push
+    mg = merge
