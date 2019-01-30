@@ -3,7 +3,7 @@
     email = yuki.sato.dev@gmail.com
 
 [core]
-    excludesfile = ~/.gitignore
+    excludesfile = ~/.gitignore_global
     autocrlf = false
     preloadindex = true
     fscache = true
