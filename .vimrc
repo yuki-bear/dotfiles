@@ -46,7 +46,7 @@ if isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
   endif
 
   "set snippet file dir
-  let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
+  let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/neosnippets/,~/.vim/snippets'
 
   " Not to occur errors with gitgutter on windows
   set updatetime=100 " update term. especially for gitgutter's refresh term
