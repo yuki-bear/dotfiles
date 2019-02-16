@@ -22,6 +22,7 @@ if isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
 
   NeoBundle 'editorconfig/editorconfig-vim'
   NeoBundle 'airblade/vim-gitgutter'
+  NeoBundle 'tpope/vim-surround'
 
   NeoBundle 'Shougo/neosnippet.vim'
   NeoBundle 'Shougo/neosnippet-snippets'
