@@ -179,8 +179,9 @@ inoremap <silent> jk <esc>
 " colorscheme
 let &t_Co=256
 try
-  colorscheme molokai        " git@github.com:tomasr/molokai.git
-  "colorscheme badwolf        " git@github.com:sjl/badwolf.git
+  " colorscheme molokai        " git@github.com:tomasr/molokai.git
+  " colorscheme badwolf        " git@github.com:sjl/badwolf.git
+  colorscheme gruvbox        " git@github.com:morhetz/gruvbox.git
 catch /^Vim\%((\a\+)\)\=:E185/
 endtry
 
