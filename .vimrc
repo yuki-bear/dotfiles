@@ -84,9 +84,9 @@ if isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
   let g:ctrlp_lazy_update = 1
   let g:ctrlp_root_markers = ['package.json', 'composer.json', 'Gemfile']
   if has('windows')
-    set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*     " MacOSX/Linux
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
   else
-    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*\\vendor\\*  " Windows
+    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
   endif
   let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/]\.(git|hg|svn)$|\v[\/](build|storage|templates_c)$',
@@ -96,7 +96,7 @@ if isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
   NeoBundle 'majutsushi/tagbar'
   nmap <F8> :TagbarToggle<CR>
   " show tag list if there are two or more candidates
-  nnoremap <C-]> g<C-]> 
+  nnoremap <C-]> g<C-]>
 
   NeoBundle 'leafgarland/typescript-vim'
   let g:typescript_compiler_binary = 'tsc'
