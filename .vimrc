@@ -10,28 +10,98 @@ let &runtimepath = &runtimepath . ',' . s:deinDir . '/repos/github.com/Shougo/de
 " dein.vim {{{
 if dein#load_state(s:deinDir)
   call dein#begin(s:deinDir)
+  call dein#add('Shougo/dein.vim')
 
-  call dein#add('editorconfig/editorconfig-vim')
-  call dein#add('airblade/vim-gitgutter')
-  call dein#add('tpope/vim-surround')
-  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neocomplete.vim')
+  call dein#add('Shougo/neoinclude.vim')
+  call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+  call dein#add('vim-scripts/taglist.vim')
+
   call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('scrooloose/nerdtree')
-  call dein#add('scrooloose/nerdcommenter')
-  call dein#add('posva/vim-vue')
-  call dein#add('msanders/snipmate.vim')
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('airblade/vim-gitgutter')
+  call dein#add('editorconfig/editorconfig-vim')
   call dein#add('kien/ctrlp.vim')
-  call dein#add('majutsushi/tagbar')
   call dein#add('leafgarland/typescript-vim')
+  call dein#add('majutsushi/tagbar')
+  call dein#add('msanders/snipmate.vim')
+  call dein#add('posva/vim-vue')
+  call dein#add('scrooloose/nerdcommenter')
+  call dein#add('scrooloose/nerdtree')
+  call dein#add('thinca/vim-quickrun')
+  call dein#add('thinca/vim-ref')
+  call dein#add('tpope/vim-surround')
+  call dein#add('w0rp/ale')
 
   call dein#end()
   call dein#save_state()
+  " call dein#install()
 endif
 "}}}
-" :call dein#install()
 
 filetype plugin indent on
 syntax enable
+
+
+" function! MyStatuslineSyntax() abort "{{{
+"   let l:ret = ale#statusline#Status()
+"   if 0 < len(l:ret)
+"     highlight StatusLine cterm=NONE gui=NONE ctermfg=Black guifg=Black ctermbg=Magenta guibg=Magenta
+"   elseif s:lineUpdate is# 1
+"     highlight StatusLine cterm=NONE gui=NONE ctermfg=Black guifg=Black ctermbg=Grey guibg=Grey
+"   endif
+"   return l:ret
+" endfunction "}}}
+
+" function! MyStatuslinePaste() abort "{{{
+"   if &paste is# 1
+"     return '(paste)'
+"   endif
+"   return ''
+" endfunction "}}}
+
+set cmdheight=1
+" set statusline=\ %t\ %{MyStatuslinePaste()}\ %m\ %r\ %h\ %w\ %q\ %{MyStatuslineSyntax()}%=%l/%L\ \|\ %Y\ \|\ %{&fileformat}\ \|\ %{&fileencoding}\
+" customize statusline
+set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
+
+nmap <silent> <Subleader>N <Plug>(ale_previous)
+nmap <silent> <Subleader>n <Plug>(ale_next)
+nmap <silent> <Subleader>a <Plug>(ale_toggle)
+
+" ale {{{
+let g:ale_echo_cursor              = 0
+let g:ale_emit_conflict_warnings   = 0
+let g:ale_history_enabled          = 0
+let g:ale_history_log_output       = 0
+let g:ale_lint_on_enter            = 0
+let g:ale_lint_on_filetype_changed = 0
+let g:ale_lint_on_text_changed     = 'never'
+let g:ale_linters                  = {
+\    'php': ['php']
+\}
+let g:ale_max_buffer_history_size        = 0
+let g:ale_pattern_options_enabled        = 1
+let g:ale_set_highlights                 = 1
+let g:ale_set_signs                      = 1
+let g:ale_warn_about_trailing_whitespace = 0
+"}}}
+
+
+" vim-ref {{{
+" curl -O http://jp2.php.net/distributions/manual/php_manual_ja.tar.gz
+" tar zxvf php_manual_ja.tar.gz -C $HOME/.vim/vim-ref
+inoremap <silent><C-k> <C-o>:call<Space>ref#K('normal')<CR><ESC>
+nmap <silent>K <Plug>(ref-keyword)
+let g:ref_no_default_key_mappings = 1
+let g:ref_cache_dir               = $HOME . '/.vim/vim-ref/cache'
+let g:ref_detect_filetype         = {
+\    'php': 'phpmanual'
+\}
+let g:ref_phpmanual_path = $HOME . '/.vim/vim-ref/php-chunked-xhtml'
+let g:ref_use_cache      = 1
+let g:ref_use_vimproc    = 1
+"}}}
 
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
@@ -84,7 +154,7 @@ let g:ctrlp_max_height = 20
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 let g:ctrlp_lazy_update = 1
-let g:ctrlp_root_markers = ['package.json', 'composer.json', 'Gemfile']
+let g:ctrlp_root_markers = ['.editorconfig', 'package.json', 'composer.json', 'Gemfile']
 if has('windows')
   set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 else
@@ -150,9 +220,6 @@ set laststatus=2            " show status line
 set ruler                   " show cursor position
 set list                    " show listchars
 set listchars=tab:>-,trail:.,precedes:<,extends:> " appearance of system keys such as TAB
-
-" customize statusline
-set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 
 set smartindent             " indent smartly
 set wildmenu                " visual autocomplete for command menu
