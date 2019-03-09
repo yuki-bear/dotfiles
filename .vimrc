@@ -119,8 +119,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 "set snippet file dir
-let g:neosnippet#snippets_directory = s:deinDir . '/repos/github.com/Shougo/neosnippet-snippets/neosnippets/,~/.vim/snippets'
-
+let g:neosnippet#snippets_directory = s:deinDir . '/repos/github.com/Shougo/neosnippet-snippets/neosnippets,~/.vim/snippets'
 " Not to occur errors with gitgutter on windows
 set updatetime=100 " update term. especially for gitgutter's refresh term
 if has("win32unix")
