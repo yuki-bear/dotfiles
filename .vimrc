@@ -181,15 +181,15 @@ set encoding=utf-8          " internal encoding
 set fenc=utf-8              " default charset
 set ff=unix                 " default line endings
 set fileencodings=utf8,iso-2022-jp,cp932,sjis,euc-jp " encoding detection order for Japanese
-set backup
-set swapfile
 if isdirectory(expand("~/.vim/.backup/"))
+    set backup
     set backupdir=~/.vim/.backup/
 endif
 if isdirectory(expand("~/.vim/.undo/"))
     set undodir=~/.vim/.undo/
 endif
 if isdirectory(expand("~/.vim/.swp/"))
+    set swapfile
     set directory=~/.vim/.swp/
 endif
 set autoread                " reload editing file automatically when changes
@@ -238,9 +238,9 @@ inoremap <silent> jk <esc>
 " colorscheme
 let &t_Co=256
 try
-  " colorscheme molokai        " git@github.com:tomasr/molokai.git
+  colorscheme molokai        " git@github.com:tomasr/molokai.git
   " colorscheme badwolf        " git@github.com:sjl/badwolf.git
-  colorscheme gruvbox        " git@github.com:morhetz/gruvbox.git
+  " colorscheme gruvbox        " git@github.com:morhetz/gruvbox.git
 catch /^Vim\%((\a\+)\)\=:E185/
 endtry
 
