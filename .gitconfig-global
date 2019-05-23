@@ -23,12 +23,14 @@
     br = branch
     co = checkout
     st = status
+    sta = stash
     df = diff
     ad = add
     cm = commit
     pl = pull
     ps = push
-    mg = merge
+    mg = merge --no-ff
+    mgt = mergetool
 
 [includeIf "gitdir:~/Projects/Personal/"]
     path = ~/Projects/Personal/.gitconfig
