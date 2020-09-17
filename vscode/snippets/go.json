@@ -1,0 +1,189 @@
+{
+	// Place your snippets for go here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+	"TreeNode Definition": {
+		"prefix": "treenode",
+		"body": [
+			"import (",
+			"\t\"github.com/yukisato/leetcode-util/datastructure\"",
+			")",
+			"",
+			"// TreeNode structure for LeetCode",
+			"type TreeNode = datastructure.TreeNode",
+			"$0",
+		],
+		"description": "Define a type TreeNode for LeetCode"
+	},
+	"ListNode Definition": {
+		"prefix": "listnode",
+		"body": [
+			"import (",
+			"\t\"github.com/yukisato/leetcode-util/datastructure\"",
+			")",
+			"",
+			"// ListNode structure for LeetCode",
+			"type ListNode = datastructure.ListNode",
+			"$0",
+		],
+		"description": "Define a type ListNode for LeetCode"
+	},
+	"func readStringsFromStdin()": {
+		"prefix": "read-strings-stdin",
+		"body": [
+			"// readStringsFromStdin parses lines of inputs into 2D string array.",
+			"func readStringsFromStdin() [][]string {",
+			"\tout := [][]string{}",
+			"\tscanner := bufio.NewScanner(reader)",
+			"",
+			"\tfor scanner.Scan() {",
+			"\t\tout = append(out, strings.Split(scanner.Text(), \" \"))",
+			"\t}",
+			"",
+			"\treturn out",
+			"}",
+			"$0"
+		],
+		"description": "Utility function to read os.Stdin into [][]string."
+	},
+	"func readIntsFromStdin": {
+		"prefix": "read-ints-stdin",
+		"body": [
+			"// readIntsFromStdin parses lines of inputs into 2D int array.",
+			"func readIntsFromStdin() [][]int {",
+			"\tout := [][]int{}",
+			"\tscanner := bufio.NewScanner(reader)",
+			"",
+			"\tfor scanner.Scan() {",
+			"\t\tvar ints []int",
+			"",
+			"\t\tfor _, s := range strings.Split(scanner.Text(), \" \") {",
+			"\t\t\ti, err := strconv.Atoi(s)",
+			"",
+			"\t\t\tif err != nil {",
+			"\t\t\t\tfmt.Fprintln(os.Stderr, \"Failed to parse string into int.\\n\", err)",
+			"\t\t\t\tos.Exit(1)",
+			"\t\t\t}",
+			"",
+			"\t\t\tints = append(ints, i)",
+			"\t\t}",
+			"",
+			"\t\tout = append(out, ints)",
+			"\t}",
+			"",
+			"\treturn out",
+			"}",
+			"$0"
+		],
+		"description": "Utility function to read os.Stdin into [][]int."
+	},
+	"func readFloatsFromStdin": {
+		"prefix": "read-floats-stdin",
+		"body": [
+			"// readFloatsFromStdin parses lines of inputs into 2D float64 array.",
+			"func readFloatsFromStdin() [][]float64 {",
+			"\tout := [][]float64{}",
+			"\tscanner := bufio.NewScanner(reader)",
+			"",
+			"\tfor scanner.Scan() {",
+			"\t\tvar floats []float64",
+			"",
+			"\t\tfor _, s := range strings.Split(scanner.Text(), \" \") {",
+			"\t\t\ti, err := strconv.ParseFloat(s, 64)",
+			"",
+			"\t\t\tif err != nil {",
+			"\t\t\t\tfmt.Fprintln(os.Stderr, \"Failed to parse string into float64.\\n\", err)",
+			"\t\t\t\tos.Exit(1)",
+			"\t\t\t}",
+			"",
+			"\t\t\tfloats = append(floats, i)",
+			"\t\t}",
+			"",
+			"\t\tout = append(out, floats)",
+			"\t}",
+			"",
+			"\treturn out",
+			"}",
+			"$0"
+		],
+		"description": "Utility function to read os.Stdin into [][]float64."
+	},
+	"func readLine": {
+		"prefix": "read-line-stdin",
+		"body": [
+			"// readLine reads a line the size of which is equal or less than given buffer size.",
+			"func readLine(reader io.Reader, bufSize int) string {",
+			"\tburReader := bufio.NewReaderSize(reader, bufSize)",
+			"\tbuf := make([]byte, bufSize)",
+			"",
+			"\tfor {",
+			"\t\tline, isPrefix, err := burReader.ReadLine()",
+			"",
+			"\t\tif err != nil {",
+			"\t\t\tpanic(err)",
+			"\t\t}",
+			"",
+			"\t\tbuf = append(buf, line...)",
+			"",
+			"\t\tif !isPrefix {",
+			"\t\t\tbreak",
+			"\t\t}",
+			"\t}",
+			"",
+			"\treturn string(buf)",
+			"}",
+			"$0"
+		],
+		"description": "Utility function to read a large line from os.Stdin the size of which is equal or less than given buffer size."
+	},
+	"func readStringsBySize": {
+		"prefix": "read-line-bufsize-stdin",
+		"body": [
+			"// readStringsBySize reads a line the size of which is equal or less than given buffer size.",
+			"func readStringsBySize(reader io.Reader, bufSize int) [][]string {",
+			"\tvar out [][]string",
+			"\tburReader := bufio.NewReaderSize(reader, bufSize)",
+			"",
+			"MAIN_LOOP:",
+			"\tfor {",
+			"\t\tbuf := make([]byte, bufSize)",
+			"",
+			"\t\tfor {",
+			"\t\t\tline, isPrefix, err := burReader.ReadLine()",
+			"",
+			"\t\t\tif err != nil {",
+			"\t\t\t\tif err.Error() == \"EOF\" {",
+			"\t\t\t\t\tbreak MAIN_LOOP",
+			"\t\t\t\t}",
+			"",
+			"\t\t\t\tpanic(err)",
+			"\t\t\t}",
+			"",
+			"\t\t\tbuf = append(buf, line...)",
+			"",
+			"\t\t\tif !isPrefix {",
+			"\t\t\t\tbreak",
+			"\t\t\t}",
+			"\t\t}",
+			"",
+			"\t\tout = append(out, strings.Split(string(buf), \" \"))",
+			"\t}",
+			"",
+			"\treturn out",
+			"}",
+			"$0"
+		],
+		"description": "Utility function to read a large line from os.Stdin the size of which is equal or less than given buffer size."
+	}
+}

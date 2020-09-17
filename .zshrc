@@ -62,7 +62,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx tmux)
+plugins=(git osx tmux heroku zsh-autosuggestions zsh-syntax-highlighting terraform gcloud)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -92,4 +92,19 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export PATH="/usr/local/sbin:~/.composer/vendor/bin:$PATH"
+
+# Golang setting
+export GOPATH=$HOME/go
+export GOROOT=/usr/local/go
+export PATH=$GOPATH/bin:$PATH
+export PATH=$GOROOT/bin:$PATH
+
 . ~/z.sh
+. ~/gibo-completion.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/yuki/Projects/Personal/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/yuki/Projects/Personal/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/yuki/Projects/Personal/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/yuki/Projects/Personal/google-cloud-sdk/completion.zsh.inc'; fi

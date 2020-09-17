@@ -1,0 +1,37 @@
+
+{
+	// Place your snippets for php here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	
+	"if inline statement": {
+		"prefix": "if-inline",
+		"body": [
+			"<?php if ($1) : ?>",
+			"$0",
+    		"<?php endif; ?>"
+		],
+		"description": "if clause in inline statement"
+	},
+	"Display all errors": {
+		"prefix": "display-all-errors",
+		"body": [
+			"ini_set('display_errors', 1);",
+			"ini_set('display_startup_errors', 1);",
+			"error_reporting(E_ALL);",
+			"$0"
+		],
+		"description": "Settings overwrite for displaying error messages."
+	}
+
+}

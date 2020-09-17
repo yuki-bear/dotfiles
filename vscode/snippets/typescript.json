@@ -44,7 +44,7 @@
 	},
 
 	"basic DFS form": {
-		"prefix": "dfsf",
+		"prefix": "dfs-form",
 		"body": [
 			"function ${1:dfs}(node: BinaryTreeNode<number> | null): ${2:void} {",
 			"\tif (!node) {",
@@ -65,7 +65,7 @@
 	},
 
 	"basic BFS form": {
-		"prefix": "bfsf",
+		"prefix": "bfs-form",
 		"body": [
 			"const ${1:queue}$2 = [];",
 			"",
@@ -78,5 +78,110 @@
 			"}",
 		],
 		"description": "Basic format of DFS"
+	},
+
+	"basic Binary Search form": {
+		"prefix": "binsearch-form",
+		"body": [
+			"let l = 0;",
+			"let r = nums.length - 1;",
+			"",
+			"while (l <= r) {",
+			"\tconst mid = (l + r) >>> 1;",
+			"",
+			"\tif (nums[mid] === ${1:target}) {",
+			"\t\treturn mid;",
+			"\t}",
+			"",
+			"\tif (nums[mid] < $1) {",
+			"\t\tl = mid + 1;",
+			"\t} else {",
+			"\t\tr = mid - 1;",
+			"\t}",
+			"}",
+			"",
+			"",
+			"return -1;",
+		],
+		"description": "Basic format of DFS"
+	},
+
+	"Dual For": {
+		"prefix": "forfor",
+		"body": [
+			"for (let i = 0; i < nums.length; i++) {",
+			"\tconst num = nums[i];",
+			"",
+			"\tfor (let j = 1; i < nums.length; i++) {",
+			"\t\tconst num = nums[i];",
+			"",
+			"\t}",
+			"}",
+		],
+		"description": "Dual For"
+	},
+
+	// 最大公約数
+	"Greatest Common Factor": {
+		"prefix": "gcf",
+		"body": [
+			"for (let i = 0; i < nums.length; i++) {",
+			"\tconst num = nums[i];",
+			"",
+			"\tfor (let j = 1; i < nums.length; i++) {",
+			"\t\tconst num = nums[i];",
+			"",
+			"\t}",
+			"}",
+		],
+		"description": "Dual For"
+	},
+
+	// 最小公倍数
+	"Least Common Multiple": {
+		"prefix": "lcm",
+		"body": [
+			"for (let i = 0; i < nums.length; i++) {",
+			"\tconst num = nums[i];",
+			"",
+			"\tfor (let j = 1; i < nums.length; i++) {",
+			"\t\tconst num = nums[i];",
+			"",
+			"\t}",
+			"}",
+		],
+		"description": "Dual For"
+	},
+
+	"Sort in Ascending Order": {
+		"prefix": "sort-asc",
+		"body": [
+			"${1:nums}.sort((a, b) => a - b);",
+		],
+		"description": "Sort in Ascending Order"
+	},
+
+	"Sort in Descending Order": {
+		"prefix": "sort-desc",
+		"body": [
+			"${1:nums}.sort((a, b) => b - a);",
+		],
+		"description": "Sort in Descending Order"
+	},
+	"Import BinaryTreeNode": {
+		"prefix": "treenode-import",
+		"body": [
+			"import { BinaryTreeNode } from \"../../../datastructure/BinaryTreeNode.ts\";",
+			"$0"
+		],
+		"description": "Import BinaryTreeNode."
+	},
+	"Import SinglyLinkedList": {
+		"prefix": "linkedlist-import",
+		"body": [
+			"import { SinglyLinkedListNode } from \"../../../datastructure/SinglyLinkedListNode.ts\";",
+			"$0"
+		],
+		"description": "Import SinglyLinkedList."
 	},
 }
