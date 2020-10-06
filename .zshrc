@@ -101,7 +101,6 @@ export PATH=$GOPATH/bin:$PATH
 export PATH=$GOROOT/bin:$PATH
 
 . ~/z.sh
-. ~/gibo-completion.zsh
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/yuki/Projects/Personal/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/yuki/Projects/Personal/google-cloud-sdk/path.zsh.inc'; fi
